@@ -64,6 +64,7 @@ public class RowChecker : MonoBehaviour
             animator.SetBool("isDestroyed", true);
 
         }
+        this.GetComponent<AudioSource>().Play(0);
         yield return new WaitForSeconds(.4f);
         for(int i = 0;i < others.Count;i++){
                 Animator animator;
@@ -100,6 +101,7 @@ public class RowChecker : MonoBehaviour
             animator.SetBool("isDestroyed", true);
 
         }
+        this.GetComponent<AudioSource>().Play(0);
         yield return new WaitForSeconds(.4f);
         for(int i = 0;i < others.Count;i++){
                 Animator animator;

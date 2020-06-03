@@ -7,10 +7,12 @@ public enum GameState{
     blocksFall,
     blocksCheck,
     nextTurn,
-    gameOver
+    gameOver,
+    paused
 }
 public class GameManager : MonoBehaviour
 {
+    public GameState tempState;
     public Transform[] spawnPoints;
     public GameObject[] verticalPos;
     public GameObject blockSize1;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         level = 1;
         blockPlaced = false;
         blocksDestroyed = false;
+        tempState = GameState.play;
         gameState = GameState.play;
         int randomRange = 5;
         endGameManager = FindObjectOfType<EndGameManager>();
@@ -197,21 +200,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.gameOver:
                 break;
+            case GameState.paused:
+
+                break;
             default:
                 break;
         }
         if(gameState != GameState.play){
             //checkVelocity();
-        }
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            //Application.Quit();
-            if(isPaused){
-                Time.timeScale = 1;
-                isPaused = false;
-            }else if(!isPaused){
-                Time.timeScale = 0;
-                isPaused = true;
-            }
         }
     }
 
@@ -270,7 +266,6 @@ public class GameManager : MonoBehaviour
                 levelText.gameObject.SetActive(false);
                 totalScore = 0;
                 numberOfBlocksDestroyed = 0;
-                //Debug.Log("level: "+ level + "blocksInScene.Count: "+ blocksInScene.Count);
                 level++;
                 blocksInScene.ForEach(c => c.GetComponent<Rigidbody2D>().collisionDetectionMode
                                 = CollisionDetectionMode2D.Continuous);
@@ -341,7 +336,9 @@ public class GameManager : MonoBehaviour
     }
     private void ComboDisplay(){
         if(numberOfBlocksDestroyed >= 2){
-            levelText.text = "" + numberOfBlocksDestroyed + " Combo!!! ";
+            float textColor = numberOfBlocksDestroyed;
+            levelText.color = new Color(.5f,textColor/3,Random.value + .2f);
+            levelText.text = "" + numberOfBlocksDestroyed + "x Combo!!! ";
             levelText.gameObject.SetActive(true);
         }
     }

@@ -22,7 +22,6 @@ public class BackGroundChangeColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(updateCheck)
         {
             StartCoroutine(ChangeColorCo());
