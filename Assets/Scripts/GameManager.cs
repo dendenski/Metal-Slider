@@ -216,10 +216,10 @@ public class GameManager : MonoBehaviour
         DisableRowChecker();
         EnableGravity();
         StartCoroutine(checkVelocity());
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.75f);
         DisableGravity();
         EnableRowChecker();
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.45f);
         DisableRowChecker();
         if(blocksDestroyed){
             blocksDestroyed = false;
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator BlocksIncrease(){
-        float waitTime = .5f;
+        float waitTime = .45f;
         if(!blockPlaced || ((level >= 20) && (blocksInScene.Count < 14)) || blocksInScene.Count == 0){
             MoveBlockUp();
             if(level % 5 == 0){
@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         }else{
             EnableRowChecker();
             if(blocksDestroyed){
-                waitTime = 1f;
+                waitTime = .6f;
             }
             StartCoroutine(checkVelocity());
             yield return new WaitForSeconds(waitTime);
@@ -342,4 +342,6 @@ public class GameManager : MonoBehaviour
             levelText.gameObject.SetActive(true);
         }
     }
+
+
 }
