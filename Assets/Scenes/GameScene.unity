@@ -7467,7 +7467,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1181343929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1569365731}
+        m_MethodName: SoundButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1181343929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9613,6 +9624,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausedGameOverPanel: {fileID: 956292129}
   pauseButtton: {fileID: 528102629}
+  soundButtton: {fileID: 1181343928}
+  soundIcon: {fileID: 21300000, guid: c6ff72e038704c247984187a9cd43a21, type: 3}
+  soundIconX: {fileID: 21300000, guid: 9a7029efe3587a34c8cf101efafb9ea0, type: 3}
+  soundState: 0
 --- !u!4 &1569365732
 Transform:
   m_ObjectHideFlags: 0
