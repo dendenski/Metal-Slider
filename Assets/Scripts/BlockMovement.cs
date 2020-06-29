@@ -33,6 +33,7 @@ public class BlockMovement : MonoBehaviour
         if(gameManager.gameState == GameState.play){
             switch(currentState){
                 case BlockState.moveBlock:
+                    //TouchMove();
                     mouseMove();
                     break;
                 case BlockState.releaseBlock:
@@ -74,7 +75,7 @@ public class BlockMovement : MonoBehaviour
             if(touch.phase == TouchPhase.Moved && isClicked){
                 DragBlock(touchPosition);
             }
-            if(touch.phase == TouchPhase.Moved && isClicked){
+            if(touch.phase == TouchPhase.Ended && isClicked){
                 ReleaseBlock();
             }
         }

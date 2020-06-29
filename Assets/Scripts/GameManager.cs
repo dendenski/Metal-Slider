@@ -26,13 +26,11 @@ public class GameManager : MonoBehaviour
     public bool blockPlaced;
     public Text levelText;
     public int numberOfBlocksDestroyed;
-    
     public int totalScore;
     public ScoreManager scoreManager;
     public EndGameManager endGameManager;
     public int level;
     public bool isPaused;
-    // Start is called before the first frame update
     void Start()
     {
         isPaused = false;
@@ -206,9 +204,6 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-        if(gameState != GameState.play){
-            //checkVelocity();
-        }
     }
 
 
@@ -234,7 +229,6 @@ public class GameManager : MonoBehaviour
         if(!blockPlaced || ((level >= 20) && (blocksInScene.Count < 14)) || blocksInScene.Count == 0){
             MoveBlockUp();
             if(level % 5 == 0){
-                //levelText.gameObject.SetActive(true);
                 levelText.text = "Level " + level;
             }
             yield return new WaitForSeconds(.4f);
@@ -252,9 +246,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(endGameManager.GameOver());
         }else{
             EnableRowChecker();
-            if(blocksDestroyed){
-                waitTime = .6f;
-            }
             StartCoroutine(checkVelocity());
             yield return new WaitForSeconds(waitTime);
             DisableRowChecker();
@@ -327,6 +318,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.05f);
         for(int i = 0; i < blocksInScene.Count; i++)
         {
+            //Debug.Log("block" + i + "velocity" + blocksInScene[i].GetComponent<Rigidbody2D>().velocity);
             if(blocksInScene[i].GetComponent<Rigidbody2D>().velocity == Vector2.zero){
                 blocksInScene[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 blocksInScene[i].GetComponent<Rigidbody2D>().gravityScale = 0f;
